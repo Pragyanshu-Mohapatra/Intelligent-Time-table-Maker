@@ -1,10 +1,7 @@
-# Intelligent-Time-table-Maker
-#Python based project in Time table Making
 from tkinter import *
 import os
 
-
-# Designing window for registration
+# Designing window for registration of new Faculty
 
 def register():
     global register_screen
@@ -19,7 +16,7 @@ def register():
     username = StringVar()
     password = StringVar()
 
-    Label(register_screen, text="Staff Login", bg="blue").pack()
+    Label(register_screen, text="Staff Login", bg="orange").pack()
     Label(register_screen, text="").pack()
     username_lable = Label(register_screen, text="Username * ")
     username_lable.pack()
@@ -30,10 +27,10 @@ def register():
     password_entry = Entry(register_screen, textvariable=password, show='*')
     password_entry.pack()
     Label(register_screen, text="").pack()
-    Button(register_screen, text="Register", width=10, height=1, bg="blue", command=register_user).pack()
+    Button(register_screen, text="Register", width=10, height=1, bg="yellow", command=register_user).pack()
 
 
-# Designing window for login
+# Designing window for  login
 
 def login():
     global login_screen
@@ -106,12 +103,16 @@ def login_verify():
 
 def login_sucess():
     global login_success_screen
+    global delete_login_success_screen
+    
     login_success_screen = Toplevel(login_screen)
-    login_success_screen.title("Success")
-    login_success_screen.geometry("150x100")
-    Label(login_success_screen, text="Login Success").pack()
-    Button(login_success_screen, text="OK", command=delete_login_success).pack()
-
+    login_success_screen.title("Welcome to Faculty page")
+    login_success_screen.geometry("300x250")
+    Label(login_success_screen,text="Enter the  Subject and Department",bg="orange",width="300",height="2",font=("Calibri",13)).pack()
+    Label(login_success_screen,text="").pack()
+    Button(login_success_screen,text="Department", height="2", width="30", command=generate_time_table).pack()
+    Label(login_success_screen,text="").pack()
+    Button(login_success_screen,text="Subjects", height="2", width="30", command=generate_time_table).pack()
 
 # Designing popup for login invalid password
 
@@ -134,13 +135,23 @@ def user_not_found():
     Label(user_not_found_screen, text="User Not Found").pack()
     Button(user_not_found_screen, text="OK", command=delete_user_not_found_screen).pack()
 
+# Generating time table    
+
+def generate_time_table():
+    global generate_time_table
+    global delete_generate_time_table
+    generate_time_table=Toplevel(login_screen)
+    generate_time_table.title("Time table Generator")
+    generate_time_table.geometry("600x300")
+    Label(generate_time_table, text="Enter the details below as per the slots given").pack()
+    Button(generate_time_table, text="Submit",command=delete_generate_time_table).pack()
+
 
 # Deleting popups
 
 def delete_login_success():
     login_success_screen.destroy()
-
-
+    
 def delete_password_not_recognised():
     password_not_recog_screen.destroy()
 
@@ -148,6 +159,9 @@ def delete_password_not_recognised():
 def delete_user_not_found_screen():
     user_not_found_screen.destroy()
 
+def delete_generate_time_table():
+    generate_time_table.destroy()
+    
 
 # Designing Main(first) window
 
@@ -156,12 +170,10 @@ def main_account_screen():
     main_screen = Tk()
     main_screen.geometry("300x250")
     main_screen.title("Account Login")
-    Label(text="Intelligent Time Tabel Maker", bg="blue", width="300", height="2", font=("Calibri", 13)).pack()
-    Label(text="").pack()
-    Button(text="Faculty Login", height="2", width="30", command=login).pack()
-    Label(text="").pack()
-    Button(text="Student Login", height="2", width="30", command=register).pack()
-
+    Label(text="Intelligent Time Table Maker", bg="blue", width="300", height="2", font=("Calibri", 13)).pack()
+    Button(text="Faculty Login", height="2", width="30",command=login).pack()
+    Button(text="Student Time Table", height="2", width="30",command=delete_login_success).pack()    
+    Button(text="Register new ID Login", height="2", width="30",command=register).pack()
     main_screen.mainloop()
 
 
