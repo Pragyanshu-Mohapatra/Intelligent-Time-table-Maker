@@ -138,6 +138,10 @@ def user_not_found():
 def generate_time_table():
     global generate_time_table
     global delete_generate_time_table
+    generate_time_table=Toplevel(login_screen)
+    generate_time_table.title("Time table Generator")
+    generate_time_table.geometry("800x600")
+    Label(generate_time_table, text="Enter the details below as per the slots given",bg="blue", width="300", height="2", font=("Calibri", 13)).pack()
     global sub1
     global sub1_entry
     global sub2
@@ -162,7 +166,7 @@ def generate_time_table():
     global sub11_entry
     global sub12
     global sub12_entry
-    global sub13
+    """global sub13
     global sub13_entry
     global sub14
     global sub14_entry
@@ -178,12 +182,11 @@ def generate_time_table():
     global sub19_entry
     global sub20
     global sub20_entry
-    dep1 = StringVar()
-    dep2 = StringVar()
+    """
     sub1 = StringVar()
     sub2 = StringVar()
     sub3 = StringVar()
-    sub4 = StringVar()
+    sub4 = StringVar()    
     sub5 = StringVar()
     sub6 = StringVar()
     sub7 = StringVar()
@@ -192,23 +195,18 @@ def generate_time_table():
     sub10 = StringVar()
     sub11 = StringVar()
     sub12= StringVar()
-    sub13 = StringVar()
+    """sub13 = StringVar()
     sub15= StringVar()
     sub16 = StringVar()
     sub17 = StringVar()
     sub18= StringVar()
     sub19 = StringVar()
     sub20= StringVar()
-    generate_time_table=Toplevel(login_screen)
-    generate_time_table.title("Time table Generator")
-    generate_time_table.geometry("800x600")
-    Label(generate_time_table, text="Enter the details below as per the slots given").pack()
+    """
     #Monday Time table
-    Label(generate_time_table, text="Monday").pack()
+    Label(generate_time_table, text="Monday",bg="red", fg="white").pack()
     Label(generate_time_table,text="Enter Subject 1").pack()
     sub1= Entry(generate_time_table, textvariable=sub1)
-    sub1.pack()
-    sub1_entry = Entry(generate_time_table, textvariable=sub1)
     sub1.pack()
     Label(generate_time_table,text="Enter Subject 2").pack()
     sub2= Entry(generate_time_table, textvariable=sub2)
@@ -225,9 +223,10 @@ def generate_time_table():
     sub4.pack()
     sub4_entry = Entry(generate_time_table, textvariable=sub4)
     sub4.pack()
+    
     #Tuesday
     Label(generate_time_table, text="").pack()
-    Label(generate_time_table, text="Tuesday").pack()
+    Label(generate_time_table, text="Tuesday",bg="red", fg="white").pack()
     Label(generate_time_table,text="Enter Subject 1").pack()
     sub5= Entry(generate_time_table, textvariable=sub5)
     sub5.pack()
@@ -248,9 +247,10 @@ def generate_time_table():
     sub8.pack()
     sub8_entry = Entry(generate_time_table, textvariable=sub8)
     sub8.pack()
+    
     #Wednesday
     Label(generate_time_table, text="").pack()
-    Label(generate_time_table, text="Wednesday").pack()
+    Label(generate_time_table, text="Wednesday",bg="red", fg="white").pack()
     Label(generate_time_table,text="Enter Subject 1").pack()
     sub9= Entry(generate_time_table, textvariable=sub9)
     sub9.pack()
@@ -271,9 +271,9 @@ def generate_time_table():
     sub12.pack()
     sub12_entry = Entry(generate_time_table, textvariable=sub12)
     sub12.pack()
-    #Thursday
+    """#Thursday
     Label(generate_time_table, text="").pack()
-    Label(generate_time_table, text="Thursday").pack()
+    Label(generate_time_table, text="Thursday",bg="red", fg="white").pack()
     Label(generate_time_table,text="Enter Subject 1").pack()
     sub13= Entry(generate_time_table, textvariable=sub13)
     sub13.pack()
@@ -295,7 +295,7 @@ def generate_time_table():
     sub16_entry = Entry(generate_time_table, textvariable=sub16)
     sub16.pack()    
     #Friday
-    Label(generate_time_table, text="").pack()
+    Label(generate_time_table, text="",bg="red", fg="white").pack()
     Label(generate_time_table, text="Friday").pack()
     Label(generate_time_table,text="Enter Subject 1").pack()
     sub17= Entry(generate_time_table, textvariable=sub17)
@@ -317,13 +317,58 @@ def generate_time_table():
     sub20.pack()
     sub20_entry = Entry(generate_time_table, textvariable=sub20)
     sub20.pack()
+    """
     Label(generate_time_table,text="").pack()
     Label(generate_time_table, text="CSE").pack()
     Button(generate_time_table, text="Submit",command=time_table_input).pack()
+    
 
 
 def time_table_input():
-    global mas_Name
+    if os.path.exists("Time_table"):
+        os.remove("Time_table")
+    else:
+        print("The file does not exist")
+    sub1_info=sub1.get()
+    sub2_info=sub2.get()
+    sub3_info=sub3.get()
+    sub4_info=sub4.get()
+    sub5_info=sub5.get()
+    sub6_info=sub6.get()
+    sub7_info=sub7.get()
+    sub8_info=sub8.get()
+    sub9_info=sub9.get()
+    sub10_info=sub10.get()
+    sub11_info=sub11.get()
+    sub12_info=sub12.get()
+    """sub13_info=sub13.get()
+    sub14_info=sub14.get()
+    sub15_info=sub15.get()"""
+    file=open("Time_table",'at')
+    file.write("Monday")
+    file.write("\n")
+    file.write(sub1_info + " ")
+    file.write(sub2_info + " ")
+    file.write(sub3_info + " ")
+    file.write(sub4_info + " ")
+    file.write("\nTuesday")
+    file.write("\n")
+    file.write(sub5_info + " ")
+    file.write(sub6_info + " ")
+    file.write(sub7_info + " ")
+    file.write(sub8_info + " ")
+    file.write("\nWednesday")
+    file.write("\n")
+    file.write(sub9_info + " ")
+    file.write(sub10_info + " ")
+    file.write(sub11_info + " ")
+    file.write(sub12_info + " ")
+    file.close()
+    file = open("Time_table", 'r')
+    for x in file:
+        print(x)
+    file.close()
+
 
 # Deleting popups
 
@@ -352,7 +397,7 @@ def main_account_screen():
     Button(text="Faculty Login", height="2", width="30",command=login).pack()
     Label(text="").pack()
     Button(text="Student Time Table", height="2", width="30",command=delete_login_success).pack()
-    Label(text="").pack()
+    Label(text="").pack()    
     Button(text="Register new ID Login", height="2", width="30",command=register).pack()
     Label(text="").pack()
     main_screen.mainloop()
