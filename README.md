@@ -6,6 +6,6 @@ Phase of Project:-  Planning for Project/Requirement Gathering/Implementation/Te
 About:-Intelligent Time table maker is a Python language Project.
 This project is made to get hands-on GUI modules of  in Python of Programming Skill. 
 
-Goal:- Make easy for student to make a time table.  
+Goal:- Make easy for student to make time table for week and month.
 
 Technologies used:- Python & PyCharm.
